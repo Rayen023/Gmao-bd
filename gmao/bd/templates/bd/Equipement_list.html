@@ -1,0 +1,21 @@
+<h1>Gmao List</h1>
+<a href="{% url 'Equipement-create' %}">Create Equipement</a>
+
+<table>
+    <tr>
+        <th>Item</th>
+        <th></th>
+    </tr>
+    {% for Equipement in Equipements %}
+    <tr>
+        <td> {{Equipement.Designation}}</td>
+        <td>
+            <a href="{% url 'Equipement' Equipement.Code_Equip %}">View</a>
+            <a href="{% url 'Equipement-update' Equipement.Code_Equip %}">Edit</a>
+            <a href="{% url 'Equipement-delete' Equipement.Code_Equip %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <h3>No items in List</h3>
+    {% endfor %}
+</table>
