@@ -5,19 +5,37 @@ from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
-from .models import Equipement
+from .models import Equipement, Panne
+from django.core import serializers
+
+
 # Create your views here.
 
 
 class EquipementList(ListView):
     model = Equipement
     context_object_name = 'Equipements'
+    # model = Task
+    # template_name = 'base/tasks.html' par deafaut : Task_list.html
+    # context_object_name = 'tasks'
+    # paginate_by = 5
+    # ordering = ['-date_created']
 
 
 class EquipementDetail(DetailView):
     model = Equipement
     context_object_name = 'Equipement'
     template_name = 'bd/Equipement.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['all_fiedls'] = serializers.serialize(
+            "python", Equipement.objects.filter(pk=self.kwargs.get('pk')))
+        context['Pannes'] = serializers.serialize(
+            "python", Panne.objects.filter(id_equipement=self.kwargs.get('pk')))
+        return context
 
 
 class EquipementCreate(CreateView):

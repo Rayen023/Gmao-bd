@@ -8,4 +8,6 @@ urlpatterns = [
          name='Equipement-create'),
     path('Equipement-update/<int:pk>/',
          EquipementUpdate.as_view(), name='Equipement-update'),
-    path('Equipement-delete/<int:pk>/', EquipementDelete.as_view(), name='Equipement-delete'), ]
+    path('Equipement-delete/<int:pk>/',
+         EquipementDelete.as_view(), name='Equipement-delete'),
+]
