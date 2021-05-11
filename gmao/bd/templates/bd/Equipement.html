@@ -5,7 +5,7 @@
         <th>Item</th>
     </tr>
 
-    {% for instance in all_fiedls %} {% for field, value in instance.fields.items %} {% if field|first not in 'id' %}
+    {% for instance in all_fiedls %} {% for field, value in instance.fields.items %} {% if field|first not in 'id' and value %}
     <tr>
         <td>{{ field }}</td>
         <td>{{ value }}</td>
@@ -24,7 +24,11 @@
         <hr>
         <td> {{Equipement.id_Document}}</td>
     </tr>
-    {% for instance in Pannes %} {% for field, value in instance.fields.items %} {% if field|first not in 'id' %}
+    <tr>
+        <td> Nombres de pannes : </td>
+        <td> {{ cPannes }}</td>
+    </tr>
+    {% for instance in Pannes %} {% for field, value in instance.fields.items %} {% if field|first not in 'id' and value %}
 
     <tr>
         <td>{{ field }}</td>

@@ -7,7 +7,7 @@ from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from .models import Equipement, Panne
 from django.core import serializers
-
+from django.db.models import Count, Q
 
 # Create your views here.
 
@@ -35,6 +35,8 @@ class EquipementDetail(DetailView):
             "python", Equipement.objects.filter(pk=self.kwargs.get('pk')))
         context['Pannes'] = serializers.serialize(
             "python", Panne.objects.filter(id_equipement=self.kwargs.get('pk')))
+        context['cPannes'] = Panne.objects.filter(
+            id_equipement=self.kwargs.get('pk')).count()
         return context
 
 
