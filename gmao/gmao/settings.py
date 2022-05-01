@@ -25,7 +25,7 @@ SECRET_KEY = ')g(ugh0l$y%=c&j!#@n8@nb6geyq!49=yodmg=q__chd9s*!v9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '192.168.1.5']
+ALLOWED_HOSTS = ['localhost', '192.168.1.5', '127.0.0.1']
 
 
 # Application definition
@@ -78,12 +78,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'gmao',
-        'USER': 'dbadmin',
-        'PASSWORD': '12345',
+        'USER': 'root',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '3306',
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
 # Password validation
